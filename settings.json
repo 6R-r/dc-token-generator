@@ -1,5 +1,5 @@
 {
-    "accounts": {
-        "password": "Kaue@Hogwarts$"
-    }
+    "chromedriver_path": "chromedriver.exe",
+
+    "default_password": "Kaue@Hogwarts$"
 }

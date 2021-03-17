@@ -12,7 +12,7 @@ colorama.init(autoreset=True)
 
 settings = json.load(open('settings.json'))
 
-dtg = DiscordTokenGenerator(settings['accounts']['password'])
+dtg = DiscordTokenGenerator(settings)
 
 while True:
     try:

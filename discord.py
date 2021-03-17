@@ -16,9 +16,9 @@ from bs4 import BeautifulSoup
 months = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
 class DiscordTokenGenerator:
-    def __init__(self, password):
-        self.password = password
-
+    def __init__(self, settings):
+        self.settings = settings
+        
         self.fakemail = FakeMail()
 
         self.chrome_options = webdriver.ChromeOptions()
@@ -29,7 +29,7 @@ class DiscordTokenGenerator:
             self.fakemail.change()
             self.username = self.fakemail.address.split('@')[0]
 
-            self.browser = webdriver.Chrome(chrome_options=self.chrome_options)
+            self.browser = webdriver.Chrome(executable_path=self.settings['chromedriver_path'], chrome_options=self.chrome_options)
 
             self.browser.get('https://discord.com/register')
 
@@ -71,7 +71,7 @@ class DiscordTokenGenerator:
         username_field.send_keys(self.username)
 
         password_field = self.browser.find_element_by_name('password')
-        password_field.send_keys(self.password)
+        password_field.send_keys(self.settings['default_password'])
 
         actions = ActionChains(self.browser)
 
